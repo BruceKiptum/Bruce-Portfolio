@@ -3,126 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruce Korir | Software Dev & Data Analyst</title>
+    <title>Bruce Korir | Software Developer & Data Analyst</title>
     <link rel="icon" href="/images/profile.jpg" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            background-color: #0f172a;
+            color: #e2e8f0;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+
+        .theme-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
-        
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-        }
-        
+
         .nav-link {
             position: relative;
+            transition: color 0.3s ease;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
-            background-color: #1e40af;
+            background-color: #3b82f6;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            left: -8px;
-            top: 0;
-            background-color: #1e40af;
+
+        .card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
         }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translate malign-d5px; }
-            100% { transform: translateY(0px); }
+
+        .floating-img {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll reveal effect */
+        [data-scroll] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        [data-scroll="in"] {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-blue-600">Bruce Korir</span>
+    <nav class="fixed top-0 left-0 w-full bg-[#1e293b] bg-opacity-95 backdrop-blur-lg z-50 shadow-lg">
+        <div class="section-container">
+            <div class="flex justify-between items-center h-20">
+                <div class="text-2xl font-bold text-white">Bruce Korir</div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
-                    <a href="#about" class="nav-link text-gray-600 text-gray-700 hover:text-blue-600">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600">Skills</a>
-                    <a href="#project" class="nav-link text-gray-700 hover:text-blue-600">Projects</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+                <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4 shadow-lg">
-            <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
-            <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600">About</a>
-            <a href="#skills" class="block py-2 text-gray-700 hover:text-blue-600">Skills</a>
-            <a href="#project" class="block py-2 text-gray-700 hover:text-blue-600">Projects</a>
-            <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600">Contact</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#1e293b] px-6 py-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-300 hover:text-white">Home</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-white">About</a>
+            <a href="#skills" class="block py-2 text-gray-300 hover:text-white">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-300 hover:text-white">Projects</a>
+            <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg text-white pt-32 pb-20 md:pt-40 md:pb-28">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-blue-200">Bruce Korir</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Developer & Data Analyst<br>Co-founder, CodeXcape Technologies</h2>
-                    <p class="text-lg mb-8 max-w-lg">I transform data into insights and build digital solutions that make an impact.</p>
-                    <div class="flex space-x-4">
-                        <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition duration-300">Get In Touch</a>
-                        <a href="#project" class="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition duration-300">View My Work</a>
+    <section id="home" class="theme-gradient pt-32 pb-24">
+        <div class="section-container">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left fade-in">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Bruce Korir</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-200 mb-6">Software Developer & Data Analyst</h2>
+                    <p class="text-lg text-gray-300 mb-8 max-w-md mx-auto md:mx-0">Crafting impactful digital solutions and transforming data into actionable insights.</p>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="#contact" class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-medium hover:bg-[#2563eb] transition duration-300">Connect With Me</a>
+                        <a href="#projects" class="border border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-[#1e3a8a] transition duration-300">Explore My Work</a>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
                     <div class="relative w-64 h-64 md:w-80 md:h-80">
-                        <div class="absolute inset-0 bg-blue-400 rounded-full opacity-20 floating" style="animation-delay: 0.5s;"></div>
-                        <div class="absolute inset-0 bg-blue-500 rounded-full opacity-20 floating" style="animation-delay: 1s;"></div>
-                        <div class="absolute inset-0 bg-blue-600 rounded-full opacity-20 floating" style="animation-delay: 1.5s;"></div>
-                        <img src="images/profile.jpg" alt="Bruce Korir Professional Photo" class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+                        <img src="images/profile.jpg" alt="Bruce Korir" class="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl floating-img">
                     </div>
                 </div>
             </div>
@@ -130,67 +144,56 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    <section id="about" class="py-24 bg-[#1e293b]">
+        <div class="section-container">
+            <div class="text-center mb-16" data-scroll>
+                <h2 class="text-3xl font-bold text-white mb-4">About Me</h2>
+                <div class="w-16 h-1 bg-[#3b82f6] mx-auto"></div>
             </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Working" class="rounded-lg shadow-xl w-full max-w-md">
+            <div class="flex flex-col md:flex-row items-center gap-12" data-scroll>
+                <div class="md:w-1/3">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Working" class="rounded-xl shadow-xl w-full max-w-md">
                 </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Who I Am</h3>
-                    <p class="text-gray-600 mb-6">
-                        Hello, I'm Bruce Korir, a Nairobi-based software and data enthusiast with a Bachelor’s degree in Information Science from the Technical University of Kenya and a Data Science & Analytics certification from ALX, both earned in 2024. At 25, I bring hands-on experience in building two mobile money transfer applications and responsive websites using React Native, Node.js, Next.js, HTML, CSS, and JavaScript.
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Who I Am</h3>
+                    <p class="text-gray-300 mb-6">
+                        I'm Bruce Korir, a Nairobi-based software developer and data analyst with a Bachelor’s in Information Science from the Technical University of Kenya and a Data Science certification from ALX (2024). At 25, I specialize in building mobile and web applications using React Native, Node.js, and Next.js, alongside data analytics with Python and Power BI.
                     </p>
-                    <p class="text-gray-600 mb-6">
-                        My background also includes data analytics work using Python, Excel, Power BI, and Jupyter Notebook, including an in-depth analysis of Amazon sales data. I’ve collaborated on the conceptual development of an AI-powered traffic management system, applying machine learning principles to address urban mobility challenges.
+                    <p class="text-gray-300 mb-6">
+                        My work includes developing mobile money transfer apps and analyzing Amazon sales data to drive business insights. I’m passionate about creating user-centric, scalable solutions and collaborating on innovative projects like AI-powered traffic systems.
                     </p>
-                    <p class="text-gray-600 mb-8">
-                        I’m driven by impact, problem-solving, and collaboration. With a passion for user-centered technology, I aim to deliver scalable, data-informed solutions that solve real-world problems. Let’s connect and explore how my skills can contribute to your next big project.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
-                            </div>
+                            <i class="fas fa-graduation-cap text-[#3b82f6] text-2xl mr-4"></i>
                             <div>
-                                <h4 class="font-medium text-gray-800">Education</h4>
-                                <p class="text-gray-600">BSc. Information Science</p>
+                                <h4 class="font-medium text-white">Education</h4>
+                                <p class="text-gray-300">BSc. Information Science</p>
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-certificate text-blue-600 text-xl"></i>
-                            </div>
+                            <i class="fas fa-certificate text-[#3b82f6] text-2xl mr-4"></i>
                             <div>
-                                <h4 class="font-medium text-gray-800">Certification</h4>
-                                <p class="text-gray-600">Data Science (ALX)</p>
+                                <h4 class="font-medium text-white">Certification</h4>
+                                <p class="text-gray-300">Data Science (ALX)</p>
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-language text-blue-600 text-xl"></i>
-                            </div>
+                            <i class="fas fa-language text-[#3b82f6] text-2xl mr-4"></i>
                             <div>
-                                <h4 class="font-medium text-gray-800">Languages</h4>
-                                <p class="text-gray-600">English, Swahili</p>
+                                <h4 class="font-medium text-white">Languages</h4>
+                                <p class="text-gray-300">English, Swahili</p>
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-birthday-cake text-blue-600 text-xl"></i>
-                            </div>
+                            <i class="fas fa-birthday-cake text-[#3b82f6] text-2xl mr-4"></i>
                             <div>
-                                <h4 class="font-medium text-gray-800">Age</h4>
-                                <p class="text-gray-600">25 Years</p>
+                                <h4 class="font-medium text-white">Age</h4>
+                                <p class="text-gray-300">25 Years</p>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8 flex justify-center">
-                        <a href="images/Bruce_Korir_Resume.pdf" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 inline-flex items-center">
+                    <div class="mt-8 text-center md:text-left">
+                        <a href="images/Bruce_Korir_Resume.pdf" target="_blank" class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-medium hover:bg-[#2563eb] transition duration-300 inline-flex items-center">
                             <i class="fas fa-file-alt mr-2"></i> Download Resume
                         </a>
                     </div>
@@ -200,372 +203,354 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">My Skills</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    <section id="skills" class="py-24 bg-[#0f172a]">
+        <div class="section-container">
+            <div class="text-center mb-16" data-scroll>
+                <h2 class="text-3xl font-bold text-white mb-4">My Skills</h2>
+                <div class="w-16 h-1 bg-[#3b82f6] mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12" data-scroll>
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Technical Skills</h3>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">JavaScript (Node.js, React Native, Next.js)</span>
-                            <span class="text-blue-600">90%</span>
+                    <h3 class="text-xl font-semibold text-white mb-6">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">JavaScript (Node.js, React Native, Next.js)</span>
+                                <span class="text-[#3b82f6]">90%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 90%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">HTML & CSS</span>
+                                <span class="text-[#3b82f6]">95%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 95%"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">HTML & CSS</span>
-                            <span class="text-blue-600">95%</span>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">Python (Jupyter Notebook)</span>
+                                <span class="text-[#3b82f6]">85%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 85%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Python (Jupyter Notebook)</span>
-                            <span class="text-blue-600">85%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">MySQL & MongoDB</span>
-                            <span class="text-blue-600">88%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 88%"></div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">MySQL & MongoDB</span>
+                                <span class="text-[#3b82f6]">88%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 88%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Professional Skills</h3>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">UI/UX Design (Figma)</span>
-                            <span class="text-blue-600">92%</span>
+                    <h3 class="text-xl font-semibold text-white mb-6">Professional Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">UI/UX Design (Figma)</span>
+                                <span class="text-[#3b82f6]">92%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 92%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 92%"></div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">Data Analysis</span>
+                                <span class="text-[#3b82f6]">87%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 87%"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Data Analysis</span>
-                            <span class="text-blue-600">87%</span>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">Microsoft Excel & Power BI</span>
+                                <span class="text-[#3b82f6]">85%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 85%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 87%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Microsoft Excel & Power BI</span>
-                            <span class="text-blue-600">85%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Problem Solving</span>
-                            <span class="text-blue-600">94%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 94%"></div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-gray-200">Problem Solving</span>
+                                <span class="text-[#3b82f6]">94%</span>
+                            </div>
+                            <div class="w-full bg-[#1e293b] rounded-full h-2">
+                                <div class="theme-gradient h-2 rounded-full" style="width: 94%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-16">
-                <h3 class="text-xl font-semibold mb-8 text-gray-800 mb-8 text-center">Tools & Technologies</h3>
-                <div class="flex flex-wrap gap-6 justify-content">
-                    <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                        <i class="fab fa-js text-yellow-400 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">JavaScript</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fab fa-react text-blue-400 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">React</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fab fa-node-js text-green-500 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">Node.js</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md">
-                    <i class="fab fa-python transition-blue-600 text-blue-600 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">Python</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fas fa-database text-blue-600 text-blue-700 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">MySQL</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fas fa-leaf text-green-600 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">MongoDB</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fab fa-figma text-purple-600 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">Figma</span>
-                </div>
-                <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 w-24">
-                    <i class="fas fa-chart-line text-orange-500 text-4xl mb-2"></i>
-                    <span class="text-sm font-medium">Power BI</span>
+            <div class="mt-16" data-scroll>
+                <h3 class="text-xl font-semibold text-white mb-8 text-center">Tools & Technologies</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fab fa-js text-yellow-400 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">JavaScript</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fab fa-react text-blue-400 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">React</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fab fa-node-js text-green-500 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">Node.js</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fab fa-python text-blue-600 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">Python</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fas fa-database text-blue-700 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">MySQL</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fas fa-leaf text-green-600 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">MongoDB</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fab fa-figma text-purple-600 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">Figma</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-[#1e293b] rounded-xl card w-24">
+                        <i class="fas fa-chart-line text-orange-500 text-3xl mb-2"></i>
+                        <span class="text-sm text-gray-200">Power BI</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="project" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">My Projects</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    <section id="projects" class="py-24 bg-[#1e293b]">
+        <div class="section-container">
+            <div class="text-center mb-16" data-scroll>
+                <h2 class="text-3xl font-bold text-white mb-4">My Projects</h2>
+                <div class="w-16 h-1 bg-[#3b82f6] mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-scroll>
                 <!-- Project 1: Instant Transfer App -->
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80" alt="Instant Transfer App" class="w-full h-full object-cover">
-                    </div>
+                <div class="card bg-[#0f172a] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80" alt="Instant Transfer App" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Instant Transfer App</h3>
-                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">FinTech</span>
+                            <h3 class="text-xl font-semibold text-white">Instant Transfer App</h3>
+                            <span class="bg-[#3b82f6] bg-opacity-20 text-[#3b82f6] text-xs px-2 py-1 rounded">FinTech</span>
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            A mobile money transaction app enabling seamless deposits and withdrawals with Mpesa integration, built for efficiency and user convenience.
+                        <p class="text-gray-300 mb-4">
+                            A mobile money transaction app with Mpesa integration for seamless deposits and withdrawals, designed for efficiency.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">React Native</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Node.js</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Safaricom Daraja API</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">React Native</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Node.js</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Safaricom Daraja API</span>
                         </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.manuukip.intatransfer" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">
+                        <a href="https://play.google.com/store/apps/details?id=com.manuukip.intatransfer" target="_blank" rel="noopener noreferrer" class="text-[#3b82f6] font-medium hover:text-[#2563eb] inline-flex items-center">
                             View Project <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
                 <!-- Project 2: Pesadownload App -->
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80" alt="Pesadownload App" class="w-full h-full object-cover">
-                    </div>
+                <div class="card bg-[#0f172a] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80" alt="Pesadownload App" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Pesadownload App</h3>
-                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">FinTech</span>
+                            <h3 class="text-xl font-semibold text-white">Pesadownload App</h3>
+                            <span class="bg-[#3b82f6] bg-opacity-20 text-[#3b82f6] text-xs px-2 py-1 rounded">FinTech</span>
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            A mobile money transaction app designed for fast and secure financial transactions, integrated with robust payment APIs.
+                        <p class="text-gray-300 mb-4">
+                            A secure mobile money transaction app integrated with payment APIs for fast financial operations.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">React Native</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Node.js</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">React Native</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Node.js</span>
                         </div>
-                        <a href="https://www.pesadownload.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">
+                        <a href="https://www.pesadownload.com" target="_blank" rel="noopener noreferrer" class="text-[#3b82f6] font-medium hover:text-[#2563eb] inline-flex items-center">
                             View Project <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
                 <!-- Project 3: Instant Transfer Website -->
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1460925894417-afdabcd41a2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1415&q=80" alt="Instant Transfer Website" class="w-full h-full object-cover">
-                    </div>
+                <div class="card bg-[#0f172a] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Instant Transfer Website" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Instant Transfer Website</h3>
-                            <span class="bg-yellow-100 text-yellow-600 text-xs px-2 py-1 rounded">Web Development</span>
+                            <h3 class="text-xl font-semibold text-white">Instant Transfer Website</h3>
+                            <span class="bg-yellow-500 bg-opacity-20 text-yellow-500 text-xs px-2 py-1 rounded">Web Development</span>
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            A responsive website for Instant Transfer, providing users with a platform to manage transactions and access financial services.
+                        <p class="text-gray-300 mb-4">
+                            A responsive website for managing transactions and accessing financial services with a modern UI.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Next.js</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">HTML</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">CSS</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Next.js</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">JavaScript</span>
                         </div>
-                        <a href="https://instant-m-transfer.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">
+                        <a href="https://instant-m-transfer.com" target="_blank" rel="noopener noreferrer" class="text-[#3b82f6] font-medium hover:text-[#2563eb] inline-flex items-center">
                             View Project <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
                 <!-- Project 4: Amazon Sales Analysis -->
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Amazon Sales Analysis" class="w-full h-full object-cover">
-                    </div>
+                <div class="card bg-[#0f172a] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Amazon Sales Analysis" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Amazon Electronics Sales Analysis</h3>
-                            <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded">Data Analysis</span>
+                            <h3 class="text-xl font-semibold text-white">Amazon Electronics Sales Analysis</h3>
+                            <span class="bg-green-500 bg-opacity-20 text-green-500 text-xs px-2 py-1 rounded">Data Analysis</span>
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            An in-depth financial analysis of Amazon's electronics sales data using Python, providing actionable insights for business growth.
+                        <p class="text-gray-300 mb-4">
+                            A comprehensive analysis of Amazon’s electronics sales using Python to uncover business insights.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs">Pandas</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Data Analysis</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Pandas</span>
+                            <span class="bg-[#1e293b] text-gray-300 text-xs px-2 py-1 rounded">Data Analysis</span>
                         </div>
-                        <p class="text-gray-500 text-sm">Project details available upon request.</p>
+                        <p class="text-gray-400 text-sm">Details available upon request.</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 text-center">
-                <p class="text-gray-600 mb-4">Want to see more projects?</p>
-                <a href="https://www.codexcapetech.com" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 inline-flex items-center">
-                    Visit CodeXcape Technologies <i class="fas fa-arrow-right ml-2"></i>
+            <div class="mt-12 text-center" data-scroll>
+                <a href="https://www.codexcapetech.com" target="_blank" rel="noopener noreferrer" class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-medium hover:bg-[#2563eb] transition duration-300 inline-flex items-center">
+                    More Projects at CodeXcape <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    <section id="contact" class="py-24 bg-[#0f172a]">
+        <div class="section-container">
+            <div class="text-center mb-16" data-scroll>
+                <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+                <div class="w-16 h-1 bg-[#3b82f6] mx-auto"></div>
             </div>
-            <div class="flex flex-col md:flex-row gap-12">
+            <div class="flex flex-col md:flex-row gap-12" data-scroll>
                 <div class="md:w-1/2">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                    <h3 class="text-xl font-semibold text-white mb-6">Contact Information</h3>
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-envelope text-blue-600"></i>
-                            </div>
+                            <i class="fas fa-envelope text-[#3b82f6] text-xl mr-4 mt-1"></i>
                             <div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Email</h4>
-                                    <a href="mailto:brucekiptum01@gmail.com" class="text-gray-600 hover:text-blue-600">brucekiptum01@gmail.com</a>
-                                </div>
-                            </div>
-                        <div class="flex items-start">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-phone-alt text-blue-600"></i>
-                            </div>
-                            <div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Phone</h4>
-                                    <a href="tel:+254743646677" class="text-blue-600 hover:text-blue-600">+254 743 646 677</a>
-                                </div>
-                            </div>
-                        <div class="flex items-start">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fab fa-linkedin-in text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">LinkedIn</h4>
-                                <a href href="https://www.linkedin.com/in/bruce-korir-968316287" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">linkedin.com/in/bruce-korir-968316287</a>
-                            </div>
-                            </div>
-                            <div>
-                                <div class="flex items-start">
-                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
-                                    </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Location</h4>
-                                    <p class="text-gray-600">Nairobi, Kenya</p>
-                                </div>
+                                <h4 class="font-medium text-white">Email</h4>
+                                <a href="mailto:brucekiptum01@gmail.com" class="text-gray-300 hover:text-[#3b82f6]">brucekiptum01@gmail.com</a>
                             </div>
                         </div>
-                        <div class="mt-10">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-6">Follow Me</h3>
-                            <div class="flex space-x-4">
-                                <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href href="https://github.com/BruceKiptum" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href href="https://www.linkedin.com/in/bruce-korir-968316287" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-[#3b82f6] text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-white">Phone</h4>
+                                <a href="tel:+254743646677" class="text-gray-300 hover:text-[#3b82f6]">+254 743 646 677</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-linkedin-in text-[#3b82f6] text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-white">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/bruce-korir-968316287" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#3b82f6]">bruce-korir-968316287</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-[#3b82f6] text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-white">Location</h4>
+                                <p class="text-gray-300">Nairobi, Kenya</p>
                             </div>
                         </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <form class="contact-form space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                                <input type="text" id="name" name="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" placeholder="Enter your name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" placeholder="Enter your email">
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" placeholder="Enter subject">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
-                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-300" placeholder="Enter your message"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition duration-300">
-                                Send Message <i class="fas fa-paper-plane ml-2"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <span class="text-xl font-bold text-blue-400">Bruce Korir</span>
-                    <p class="text-gray-400 mt-2">Software Developer & Data Analyst</p>
-                </div>
-                <div>
-                    <div class="flex space-x-6">
-                        <div>
-                            <a href="https://twitter.com/yourhandle" class="text-gray-400 hover:text-white transition duration-200" aria-label="Twitter" title="Twitter" target="_blank" rel="noopener noreferrer">
+                    <div class="mt-10">
+                        <h3 class="text-xl font-semibold text-white mb-6">Follow Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-[#1e293b] text-gray-300 p-3 rounded-full hover:bg-[#3b82f6] hover:text-white transition duration-300">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href href="https://github.com/BruceKiptum" class="text-gray-400 hover:text-white transition duration-200" source-label="Source" title="Source" target="_blank" rel="noopener noreferrer">
-                                <span class="fab fa-github"></i>
+                            <a href="https://github.com/BruceKiptum" target="_blank" rel="noopener noreferrer" class="bg-[#1e293b] text-gray-300 p-3 rounded-full hover:bg-[#3b82f6] hover:text-white transition duration-300">
+                                <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://instagram.com/yourhandle" class="text-gray-400 hover:text-white transition duration-200" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
+                            <a href="#" class="bg-[#1e293b] text-gray-300 p-3 rounded-full hover:bg-[#3b82f6] hover:text-white transition duration-300">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href href="#"https://www.linkedin.com/in/bruce-korir-968316287" class="text-gray-400 hover:text-white transition duration-200" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/bruce-korir-968316287" target="_blank" rel="noopener noreferrer" class="bg-[#1e293b] text-gray-300 p-3 rounded-full hover:bg-[#3b82f6] hover:text-white transition duration-300">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Bruce Korir. All rights reserved.</p>
-                <div>
-                    <div class="flex space-x-6">
-                        <div>
-                            <a href="#home" class="text-gray-400 hover:text-white text-sm transition duration-200">Home</a>
-                            <a href="#about" class="text-gray-400 hover:text-white text-sm transition duration-200">About</a>
-                            <a href="#skills" class="text-gray-400 hover:text-white text-sm transition duration-200">Skills</a>
-                            <a href="#project" class="text-gray-400 hover:text-white text-sm transition duration-200">Projects</a>
-                            <a href="#contact" class="text-gray-400 hover:text-white text-sm transition duration-200">Contact</a>
+                <div class="md:w-1/2">
+                    <div class="bg-[#1e293b] p-8 rounded-xl card">
+                        <h3 class="text-xl font-semibold text-white mb-6">Send a Message</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-200 mb-1">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-[#0f172a] border border-[#3b82f6] border-opacity-20 rounded-lg text-gray-200 focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] outline-none transition duration-300" placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-200 mb-1">Your Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-[#0f172a] border border-[#3b82f6] border-opacity-20 rounded-lg text-gray-200 focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] outline-none transition duration-300" placeholder="Enter your email">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-200 mb-1">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 bg-[#0f172a] border border-[#3b82f6] border-opacity-20 rounded-lg text-gray-200 focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] outline-none transition duration-300" placeholder="Enter subject">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-200 mb-1">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#0f172a] border border-[#3b82f6] border-opacity-20 rounded-lg text-gray-200 focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] outline-none transition duration-300" placeholder="Enter your message"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#3b82f6] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#2563eb] transition duration-300">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1e293b] py-12">
+        <div class="section-container">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <span class="text-xl font-bold text-white">Bruce Korir</span>
+                    <p class="text-gray-400 mt-2">Software Developer & Data Analyst</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-[#3b82f6] transition duration-200" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/BruceKiptum" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#3b82f6] transition duration-200" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#3b82f6] transition duration-200" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bruce-korir-968316287" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#3b82f6] transition duration-200" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-[#3b82f6] border-opacity-20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Bruce Korir. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#home" class="text-gray-400 hover:text-[#3b82f6] text-sm transition duration-200">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-[#3b82f6] text-sm transition duration-200">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-[#3b82f6] text-sm transition duration-200">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-[#3b82f6] text-sm transition duration-200">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-[#3b82f6] text-sm transition duration-200">Contact</a>
                 </div>
             </div>
         </div>
@@ -573,37 +558,49 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
+        document.getElementById('menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-        
-        // Smooth scrolling for navigation links
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                
-                // Close mobile menu if open
                 document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
-        
+
         // Form submission
         const form = document.querySelector('form');
         if (form) {
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                console.log({name, value, subject, email, message});
-                alert('Thank you! for your message! I will get back to you soon.');
+                const data = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                console.log(data);
+                alert('Thank you for your message! I’ll respond soon.');
                 form.reset();
             });
         }
+
+        // Scroll reveal
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.setAttribute('data-scroll', 'in');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        scrollElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
